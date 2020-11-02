@@ -1,7 +1,6 @@
 package com.example.banco;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,7 @@ public class MiArrayAdapter<T> extends ArrayAdapter<T> {
         TextView numCuenta = (TextView) gridView.findViewById(R.id.txtNumCuenta);
         TextView saldo = (TextView) gridView.findViewById(R.id.txtSaldo);
 
-        Cuenta item = (Cuenta) getItem(position);
+        CuentaTest item = (CuentaTest) getItem(position);
 
         nom.setText(item.getNombre());
         numCuenta.setText(item.getNumCuenta());

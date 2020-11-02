@@ -1,10 +1,10 @@
 package com.example.banco;
 
-public class Cuenta {
+public class CuentaTest {
     String nombre, numCuenta;
     float saldo;
 
-    public Cuenta(String nombre, String numCuenta, float saldo) {
+    public CuentaTest(String nombre, String numCuenta, float saldo) {
         this.nombre = nombre;
         this.numCuenta = numCuenta;
         this.saldo = saldo;

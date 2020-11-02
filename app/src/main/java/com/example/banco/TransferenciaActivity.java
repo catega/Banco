@@ -62,23 +62,23 @@ public class TransferenciaActivity extends AppCompatActivity {
         });
 
         gridCuentas = (GridView)findViewById(R.id.gridCuentas);
-        ArrayAdapter<Cuenta> adaptador = new MiArrayAdapter<Cuenta>(this, DatosCuentas.CUENTAS, R.layout.item_grid);
+        ArrayAdapter<CuentaTest> adaptador = new MiArrayAdapter<CuentaTest>(this, DatosCuentas.CUENTAS, R.layout.item_grid);
         gridCuentas.setAdapter(adaptador);
-        adaptador = new MiArrayAdapter<Cuenta>(this, DatosCuentas.CUENTAS, R.layout.item_spinner);
+        adaptador = new MiArrayAdapter<CuentaTest>(this, DatosCuentas.CUENTAS, R.layout.item_spinner);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCuentas.setAdapter(adaptador);
 
         gridCuentas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                numCuentaOrigen = ((Cuenta)parent.getItemAtPosition(position)).getNumCuenta();
+                numCuentaOrigen = ((CuentaTest)parent.getItemAtPosition(position)).getNumCuenta();
             }
         });
 
         spinnerCuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                numCuentaDestino = ((Cuenta)parent.getItemAtPosition(position)).getNumCuenta();
+                numCuentaDestino = ((CuentaTest)parent.getItemAtPosition(position)).getNumCuenta();
             }
 
             @Override

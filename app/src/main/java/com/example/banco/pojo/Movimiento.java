@@ -85,6 +85,11 @@ public class Movimiento implements Serializable {
         super();
     }
 
+    public String fechaFormat(){
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        return formateador.format(this.fechaOperacion);
+    }
+
     @Override
     public String toString(){
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
