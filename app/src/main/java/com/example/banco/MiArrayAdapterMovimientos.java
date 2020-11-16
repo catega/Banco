@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.banco.pojo.Movimiento;
 
@@ -16,8 +17,8 @@ import java.util.List;
 
 public class MiArrayAdapterMovimientos<T> extends ArrayAdapter<T> {
     private int layout;
-    public MiArrayAdapterMovimientos(Context context, List<T> objects, @LayoutRes int layout) {
-        super(context, 0, objects);
+    public MiArrayAdapterMovimientos(Fragment context, List<T> objects, @LayoutRes int layout) {
+        super(context.getActivity(), 0, objects);
         this.layout = layout;
     }
 

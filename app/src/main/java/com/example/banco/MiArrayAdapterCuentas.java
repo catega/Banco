@@ -1,5 +1,6 @@
 package com.example.banco;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.banco.pojo.Cuenta;
 
@@ -16,8 +18,8 @@ import java.util.List;
 
 public class MiArrayAdapterCuentas<T> extends ArrayAdapter<T> {
     private int layout;
-    public MiArrayAdapterCuentas(Context context, List<T> objects, @LayoutRes int layout) {
-        super(context, 0, objects);
+    public MiArrayAdapterCuentas(Fragment context, List<T> objects, @LayoutRes int layout) {
+        super(context.getActivity(), 0, objects);
         this.layout = layout;
     }
 

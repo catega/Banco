@@ -6,12 +6,13 @@ import com.example.banco.pojo.Cliente;
 import com.example.banco.pojo.Cuenta;
 import com.example.banco.pojo.Movimiento;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 
-public class MiBancoOperacional {
+public class MiBancoOperacional implements Serializable {
 
 
     private MiBD miBD;

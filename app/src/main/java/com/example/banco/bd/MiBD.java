@@ -9,8 +9,10 @@ import com.example.banco.dao.ClienteDAO;
 import com.example.banco.dao.CuentaDAO;
 import com.example.banco.dao.MovimientoDAO;
 
+import java.io.Serializable;
 
-public class MiBD extends SQLiteOpenHelper {
+
+public class MiBD extends SQLiteOpenHelper implements Serializable {
 
     private static SQLiteDatabase db;
     //nombre de la base de datos
