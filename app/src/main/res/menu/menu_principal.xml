@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_cuentas"
+        android:title="Cuentas"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_movimientos"
+        android:title="Movimientos"
+        android:orderInCategory="2"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_transferencia"
+        android:title="Transferencia"
+        android:orderInCategory="3"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="Configuración"
+        android:orderInCategory="4"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_password"
+        android:title="Cambiar contraseña"
+        android:orderInCategory="5"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_salir"
+        android:title="Salir"
+        android:orderInCategory="6"
+        app:showAsAction="never"/>
+</menu>
