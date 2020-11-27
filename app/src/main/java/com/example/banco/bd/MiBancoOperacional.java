@@ -86,7 +86,18 @@ public class MiBancoOperacional implements Serializable {
          - Si la operacion es correcta se devuelve un 0
     */
     public int transferencia(Movimiento movimientoTransferencia){
-        return 0;
+        if(movimientoTransferencia.getCuentaOrigen().getSaldoActual() >= movimientoTransferencia.getImporte()){
+            movimientoTransferencia.getCuentaOrigen().setSaldoActual(movimientoTransferencia.getCuentaOrigen().getSaldoActual() - movimientoTransferencia.getImporte());
+            movimientoTransferencia.getCuentaDestino().setSaldoActual(movimientoTransferencia.getCuentaDestino().getSaldoActual() + movimientoTransferencia.getImporte());
+
+            miBD.actualizarSaldo(movimientoTransferencia.getCuentaOrigen());
+            miBD.actualizarSaldo(movimientoTransferencia.getCuentaDestino());
+
+            miBD.insercionMovimiento(movimientoTransferencia);
+
+            return 0;
+        }
+        return 2;
     }
 
     // Operacion getMovimientosTipo: Obtiene un ArrayList de los movimientos de un tipo específico de una cuenta que recibe como parámetro

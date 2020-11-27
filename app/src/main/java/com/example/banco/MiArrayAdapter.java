@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import com.example.banco.pojo.Cuenta;
+
 import java.util.List;
 
 public class MiArrayAdapter<T> extends ArrayAdapter<T> {
@@ -29,15 +31,14 @@ public class MiArrayAdapter<T> extends ArrayAdapter<T> {
             gridView = inflater.inflate(layout, parent, false);
         }
 
-        TextView nom = (TextView) gridView.findViewById(R.id.txtNombreCuenta);
         TextView numCuenta = (TextView) gridView.findViewById(R.id.txtNumCuenta);
         TextView saldo = (TextView) gridView.findViewById(R.id.txtSaldo);
 
-        CuentaTest item = (CuentaTest) getItem(position);
+        Cuenta item = (Cuenta) getItem(position);
 
-        nom.setText(item.getNombre());
-        numCuenta.setText(item.getNumCuenta());
-        saldo.setText(String.valueOf(item.getSaldo()) + "€");
+
+        numCuenta.setText(item.getNumeroCuenta());
+        saldo.setText(String.valueOf(item.getSaldoActual()) + "€");
 
         return gridView;
     }

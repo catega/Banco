@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
                 c.setNif(usuario.getText().toString());
                 c.setClaveSeguridad(pass.getText().toString());
                 c = mbo.login(c);
+                c.setListaCuentas(mbo.getCuentas(c));
 
                 if(c == null){
                     Toast.makeText(LoginActivity.this, "Los datos no coinciden", Toast.LENGTH_LONG).show();

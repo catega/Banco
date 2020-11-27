@@ -15,7 +15,13 @@ import android.widget.GridView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.banco.bd.MiBancoOperacional;
+import com.example.banco.pojo.Cliente;
+import com.example.banco.pojo.Cuenta;
+import com.example.banco.pojo.Movimiento;
 
 public class TransferenciaActivity extends AppCompatActivity {
     private GridView gridCuentas;
@@ -23,32 +29,21 @@ public class TransferenciaActivity extends AppCompatActivity {
     private String numCuentaOrigen = "", numCuentaDestino = "";
     private float ingreso = 0;
     private boolean justificante = false;
+    Cliente c;
+    MiBancoOperacional mbo;
+    Movimiento movimiento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transferencia);
 
-        final RadioButton rdbPropia = (RadioButton)findViewById(R.id.rdbtnPropia);
+        mbo = MiBancoOperacional.getInstance(this.getApplicationContext());
+
+        c = (Cliente)getIntent().getSerializableExtra("cliente");
 
         spinnerCuentas = (Spinner)findViewById(R.id.spnCuentas);
-        final EditText editTextAjena = (EditText)findViewById(R.id.edtTextCuentaAjena);
 
-        RadioGroup radioGroup = (RadioGroup)findViewById(R.id.rdGrpCuentas);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton = (RadioButton)findViewById(checkedId);
-
-                if(radioButton.getText().toString().contentEquals("Propia")){
-                    spinnerCuentas.setVisibility(View.VISIBLE);
-                    editTextAjena.setVisibility(View.INVISIBLE);
-                }else{
-                    spinnerCuentas.setVisibility(View.INVISIBLE);
-                    editTextAjena.setVisibility(View.VISIBLE);
-                }
-            }
-        });
 
         CheckBox chkBox = (CheckBox)findViewById(R.id.chkJustificante);
         chkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
@@ -62,23 +57,30 @@ public class TransferenciaActivity extends AppCompatActivity {
         });
 
         gridCuentas = (GridView)findViewById(R.id.gridCuentas);
-        ArrayAdapter<CuentaTest> adaptador = new MiArrayAdapter<CuentaTest>(this, DatosCuentas.CUENTAS, R.layout.item_grid);
+        ArrayAdapter<Cuenta> adaptador = new MiArrayAdapter<Cuenta>(this, c.getListaCuentas(), R.layout.item_grid);
         gridCuentas.setAdapter(adaptador);
-        adaptador = new MiArrayAdapter<CuentaTest>(this, DatosCuentas.CUENTAS, R.layout.item_spinner);
+        adaptador = new MiArrayAdapter<Cuenta>(this, c.getListaCuentas(), R.layout.item_spinner);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCuentas.setAdapter(adaptador);
 
         gridCuentas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                numCuentaOrigen = ((CuentaTest)parent.getItemAtPosition(position)).getNumCuenta();
+                numCuentaOrigen = ((Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
+                // Agarrar cuenta origen del parent.getItemAtPosition(position)
+                TextView txtCuentaOrigen = (TextView)findViewById(R.id.txtCuentaOrigen);
+                txtCuentaOrigen.setText("Cuenta origen: " + numCuentaOrigen);
             }
         });
 
         spinnerCuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                numCuentaDestino = ((CuentaTest)parent.getItemAtPosition(position)).getNumCuenta();
+                numCuentaDestino = ((Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
+                // Agarrar cuenta destino del parent.getItemAtPosition(position)
+
+                TextView txtCuentaDestino = (TextView)findViewById(R.id.txtCuentaDestino);
+                txtCuentaDestino.setText("Cuenta destino: " + numCuentaDestino);
             }
 
             @Override
@@ -94,21 +96,24 @@ public class TransferenciaActivity extends AppCompatActivity {
         btnIngresar.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!rdbPropia.isChecked()){
-                    numCuentaDestino = editTextAjena.getText().toString();
-                }
-
                 ingreso = Float.parseFloat(edtSaldo.getText().toString());
 
-                Toast.makeText(getApplicationContext(), "Datos transferencia: "
-                       + "\nOrigen: " + numCuentaOrigen
-                       + "\nDestino: " + numCuentaDestino
-                       + "\nSaldo a ingresar: " + ingreso + "€"
-                       + (justificante ? "\nCon Justificante" : "\nSin Justificante") , Toast.LENGTH_LONG).show();
+                if(numCuentaOrigen != numCuentaDestino){
+                    //movimiento = new Movimiento(1, 12, fecha, "Transferencia", ingreso, )
 
-                Intent intent = new Intent();
-                intent.setClass(TransferenciaActivity.this, PrincipalActivity.class);
-                startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Datos transferencia: "
+                            + "\nOrigen: " + numCuentaOrigen
+                            + "\nDestino: " + numCuentaDestino
+                            + "\nSaldo a ingresar: " + ingreso + "€"
+                            + (justificante ? "\nCon Justificante" : "\nSin Justificante") , Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent();
+                    intent.setClass(TransferenciaActivity.this, PrincipalActivity.class);
+                    intent.putExtra("cliente", c);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Elige dos cuentas distintas", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -121,13 +126,13 @@ public class TransferenciaActivity extends AppCompatActivity {
                 ingreso = 0;
                 justificante = false;
 
-                editTextAjena.setText("");
                 edtSaldo.setText("");
 
                 Toast.makeText(getApplicationContext(), "Ingreso cancelado", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent();
                 intent.setClass(TransferenciaActivity.this, PrincipalActivity.class);
+                intent.putExtra("cliente", c);
                 startActivity(intent);
             }
         });

@@ -94,6 +94,10 @@ public class Cuenta implements Serializable {
         this.saldoActual = saldoActual;
     }
 
+    public String toStringShort(){
+        return this.numeroCuenta + ": " + this.saldoActual;
+    }
+
     @Override
     public String toString(){
         return "id: " + this.id + "\nbanco: " + this.banco + "\nsucursal: " + this.sucursal + "\ndc: " + this.dc + "\nnumero cuenta: " +

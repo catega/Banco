@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".PrincipalActivity">
 
+    <include android:id='@+id/toolbarPrincipal'
+        layout="@layout/toolbar"/>
+
     <ImageButton
         android:id="@+id/btnCuentas"
         style="@style/imageButtonStyle"
