@@ -23,6 +23,8 @@ import com.example.banco.pojo.Cliente;
 import com.example.banco.pojo.Cuenta;
 import com.example.banco.pojo.Movimiento;
 
+import java.util.Date;
+
 public class TransferenciaActivity extends AppCompatActivity {
     private GridView gridCuentas;
     private Spinner spinnerCuentas;
@@ -30,6 +32,7 @@ public class TransferenciaActivity extends AppCompatActivity {
     private float ingreso = 0;
     private boolean justificante = false;
     Cliente c;
+    Cuenta origen, destino;
     MiBancoOperacional mbo;
     Movimiento movimiento;
 
@@ -67,7 +70,7 @@ public class TransferenciaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 numCuentaOrigen = ((Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
-                // Agarrar cuenta origen del parent.getItemAtPosition(position)
+                origen = (Cuenta) parent.getItemAtPosition(position);
                 TextView txtCuentaOrigen = (TextView)findViewById(R.id.txtCuentaOrigen);
                 txtCuentaOrigen.setText("Cuenta origen: " + numCuentaOrigen);
             }
@@ -77,7 +80,7 @@ public class TransferenciaActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 numCuentaDestino = ((Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
-                // Agarrar cuenta destino del parent.getItemAtPosition(position)
+                destino = (Cuenta) parent.getItemAtPosition(position);
 
                 TextView txtCuentaDestino = (TextView)findViewById(R.id.txtCuentaDestino);
                 txtCuentaDestino.setText("Cuenta destino: " + numCuentaDestino);
@@ -99,18 +102,23 @@ public class TransferenciaActivity extends AppCompatActivity {
                 ingreso = Float.parseFloat(edtSaldo.getText().toString());
 
                 if(numCuentaOrigen != numCuentaDestino){
-                    //movimiento = new Movimiento(1, 12, fecha, "Transferencia", ingreso, )
+                    if(origen.getSaldoActual() >= ingreso){
+                        movimiento = new Movimiento(2, new Date(), "Transferencia", ingreso, origen, destino);
+                        mbo.transferencia(movimiento);
 
-                    Toast.makeText(getApplicationContext(), "Datos transferencia: "
-                            + "\nOrigen: " + numCuentaOrigen
-                            + "\nDestino: " + numCuentaDestino
-                            + "\nSaldo a ingresar: " + ingreso + "€"
-                            + (justificante ? "\nCon Justificante" : "\nSin Justificante") , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Datos transferencia: "
+                                + "\nOrigen: " + numCuentaOrigen
+                                + "\nDestino: " + numCuentaDestino
+                                + "\nSaldo a ingresar: " + ingreso + "€"
+                                + (justificante ? "\nCon Justificante" : "\nSin Justificante") , Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent();
-                    intent.setClass(TransferenciaActivity.this, PrincipalActivity.class);
-                    intent.putExtra("cliente", c);
-                    startActivity(intent);
+                        Intent intent = new Intent();
+                        intent.setClass(TransferenciaActivity.this, PrincipalActivity.class);
+                        intent.putExtra("cliente", c);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "La cuenta origen no tiene suficiente saldo", Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(getApplicationContext(), "Elige dos cuentas distintas", Toast.LENGTH_LONG).show();
                 }

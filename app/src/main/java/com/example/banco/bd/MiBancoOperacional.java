@@ -93,6 +93,7 @@ public class MiBancoOperacional implements Serializable {
             miBD.actualizarSaldo(movimientoTransferencia.getCuentaOrigen());
             miBD.actualizarSaldo(movimientoTransferencia.getCuentaDestino());
 
+            movimientoTransferencia.setImporte(movimientoTransferencia.getImporte() * -1);
             miBD.insercionMovimiento(movimientoTransferencia);
 
             return 0;

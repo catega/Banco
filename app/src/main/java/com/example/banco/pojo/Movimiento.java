@@ -81,6 +81,15 @@ public class Movimiento implements Serializable {
         this.cuentaDestino = cuentaDestino;
     }
 
+    public Movimiento(int tipo, Date fechaOperacion, String descripcion, float importe, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
+        this.tipo = tipo;
+        this.fechaOperacion = fechaOperacion;
+        this.descripcion = descripcion;
+        this.importe = importe;
+        this.cuentaOrigen = cuentaOrigen;
+        this.cuentaDestino = cuentaDestino;
+    }
+
     public Movimiento(){
         super();
     }
