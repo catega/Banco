@@ -12,8 +12,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +32,7 @@ public class TransferenciaActivity extends AppCompatActivity {
     Cliente c;
     Cuenta origen, destino;
     MiBancoOperacional mbo;
-    Movimiento movimiento;
+    Movimiento movimientoOrigen, movimientoDestino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +101,9 @@ public class TransferenciaActivity extends AppCompatActivity {
 
                 if(numCuentaOrigen != numCuentaDestino){
                     if(origen.getSaldoActual() >= ingreso){
-                        movimiento = new Movimiento(2, new Date(), "Transferencia", ingreso, origen, destino);
-                        mbo.transferencia(movimiento);
+                        movimientoOrigen = new Movimiento(0, new Date(), "Transferencia", ingreso, origen, destino);
+                        movimientoDestino = new Movimiento(1, new Date(), "Transferencia", ingreso, destino, origen);
+                        mbo.transferencia(movimientoOrigen, movimientoDestino);
 
                         Toast.makeText(getApplicationContext(), "Datos transferencia: "
                                 + "\nOrigen: " + numCuentaOrigen

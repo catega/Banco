@@ -85,16 +85,17 @@ public class MiBancoOperacional implements Serializable {
          - El movimiento que viene como parametro en el metodo, que viene en la variable movimientoTransferencia ha de ser de tipo 0.
          - Si la operacion es correcta se devuelve un 0
     */
-    public int transferencia(Movimiento movimientoTransferencia){
-        if(movimientoTransferencia.getCuentaOrigen().getSaldoActual() >= movimientoTransferencia.getImporte()){
-            movimientoTransferencia.getCuentaOrigen().setSaldoActual(movimientoTransferencia.getCuentaOrigen().getSaldoActual() - movimientoTransferencia.getImporte());
-            movimientoTransferencia.getCuentaDestino().setSaldoActual(movimientoTransferencia.getCuentaDestino().getSaldoActual() + movimientoTransferencia.getImporte());
+    public int transferencia(Movimiento movimientoCuentaOrigen, Movimiento movimientoCuentaDestino){
+        if(movimientoCuentaOrigen.getCuentaOrigen().getSaldoActual() >= movimientoCuentaOrigen.getImporte()){
+            movimientoCuentaOrigen.getCuentaOrigen().setSaldoActual(movimientoCuentaOrigen.getCuentaOrigen().getSaldoActual() - movimientoCuentaOrigen.getImporte());
+            movimientoCuentaDestino.getCuentaOrigen().setSaldoActual(movimientoCuentaDestino.getCuentaOrigen().getSaldoActual() + movimientoCuentaDestino.getImporte());
 
-            miBD.actualizarSaldo(movimientoTransferencia.getCuentaOrigen());
-            miBD.actualizarSaldo(movimientoTransferencia.getCuentaDestino());
+            miBD.actualizarSaldo(movimientoCuentaOrigen.getCuentaOrigen());
+            miBD.actualizarSaldo(movimientoCuentaDestino.getCuentaOrigen());
 
-            movimientoTransferencia.setImporte(movimientoTransferencia.getImporte() * -1);
-            miBD.insercionMovimiento(movimientoTransferencia);
+            movimientoCuentaOrigen.setImporte(movimientoCuentaOrigen.getImporte() * -1);
+            miBD.insercionMovimiento(movimientoCuentaOrigen);
+            miBD.insercionMovimiento(movimientoCuentaDestino);
 
             return 0;
         }
