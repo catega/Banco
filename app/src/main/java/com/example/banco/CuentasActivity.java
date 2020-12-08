@@ -1,10 +1,12 @@
 package com.example.banco;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -14,6 +16,7 @@ import com.example.banco.fragments.FragmentCuentas;
 import com.example.banco.fragments.FragmentMovimientos;
 import com.example.banco.pojo.Cliente;
 import com.example.banco.pojo.Cuenta;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CuentasActivity extends AppCompatActivity implements CuentasListener {
     Cliente c;
@@ -36,10 +39,6 @@ public class CuentasActivity extends AppCompatActivity implements CuentasListene
         FragmentCuentas frgCuentas = (FragmentCuentas)getSupportFragmentManager().findFragmentById(R.id.frgCuentas);
         frgCuentas.setCuentasListener(this);
         frgCuentas.setArguments(bundle);
-
-        /*lista = (ListView)findViewById(R.id.listCuentas);
-        //adaptador = new MiArrayAdapterCuentas<Cuenta>(this, mbo.getCuentas(c), R.layout.item_list_cuentas);
-        lista.setAdapter(adaptador);*/
     }
 
     public void onClickPrincipal(View view){
@@ -47,6 +46,8 @@ public class CuentasActivity extends AppCompatActivity implements CuentasListene
         intent.putExtra("cliente", c);
         startActivity(intent);
     }
+
+
 
     @Override
     public void onCuentaSeleccionada(Cuenta c) {
@@ -56,8 +57,6 @@ public class CuentasActivity extends AppCompatActivity implements CuentasListene
             ((FragmentMovimientos)getSupportFragmentManager().findFragmentById(R.id.frgMovimientos)).mostrarMovimientos(mbo.getMovimientos(c));
         }else{
             Intent intent = new Intent(this, MovimientosActivity.class);
-            /*Bundle bundle = new Bundle();
-            bundle.putSerializable("cuenta", c);*/
             intent.putExtra("cuenta", c);
             startActivity(intent);
         }

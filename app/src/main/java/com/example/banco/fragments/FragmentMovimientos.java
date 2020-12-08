@@ -1,5 +1,6 @@
 package com.example.banco.fragments;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,10 +21,11 @@ import com.example.banco.bd.MiBancoOperacional;
 import com.example.banco.dialogos.DialogoMovimientos;
 import com.example.banco.pojo.Cuenta;
 import com.example.banco.pojo.Movimiento;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class FragmentMovimientos extends Fragment {
+public class FragmentMovimientos extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
