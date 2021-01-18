@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Banco</string>
+    <string name="app_cuentas">Accounts</string>
+    <string name="app_movimientos">Movements</string>
+    <string name="app_transferencia">Transference</string>
+    <string name="app_salir">Exit</string>
+    <string name="app_configuracion">Settings</string>
+    <string name="app_cambiarPass">Change password</string>
+</resources>

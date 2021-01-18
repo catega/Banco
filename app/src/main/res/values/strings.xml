@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Banco</string>
+    <string name="app_cuentas">Cuentas</string>
+    <string name="app_movimientos">Movimientos</string>
+    <string name="app_transferencia">Transferencia</string>
+    <string name="app_salir">Salir</string>
+    <string name="app_configuracion">Configuración</string>
+    <string name="app_cambiarPass">Cambiar contraseña</string>
 </resources>

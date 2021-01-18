@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="origenDatos">
+        <item>Base de Datos Local</item>
+        <item>Servicio Web</item>
+    </string-array>
+    <string-array name="origenDatosCodigo">
+        <item>BD</item>
+        <item>SW</item>
+    </string-array>
+</resources>

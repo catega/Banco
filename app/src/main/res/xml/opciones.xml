@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Multimedia">
+        <CheckBoxPreference
+            android:key="reproducirMusica"
+            android:title="Música"
+            android:summary="Escuchar música mientras se ejecuta la aplicación"/>
+
+        <CheckBoxPreference
+            android:key="videoBienvenida"
+            android:title="Video de bienvenida"
+            android:summary="Ver el video de bienvenida al iniciar la aplicación"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="General">
+        <EditTextPreference
+            android:key="nick"
+            android:title="Nick por defecto"
+            android:summary="Introduzca su nick por defecto"
+            android:dialogTitle="Nick por defecto"/>
+
+        <ListPreference
+            android:key="idioma"
+            android:title="Idioma por defecto"
+            android:summary="Idioma por defecto de la aplicación"
+            android:dialogTitle="Idioma por defecto"
+            android:entries="@array/idioma"
+            android:entryValues="@array/idiomaCodigo"/>
+
+        <ListPreference
+            android:key="datos"
+            android:title="Origen de los datos"
+            android:summary="Origen de donde se recogen los datos"
+            android:dialogTitle="Origen datos"
+            android:entries="@array/origenDatos"
+            android:entryValues="@array/origenDatosCodigo"/>
+    </PreferenceCategory>
+</PreferenceScreen>
