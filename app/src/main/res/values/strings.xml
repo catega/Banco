@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Banco</string>
+    <string name="app_menu">Menú principal</string>
+    <string name="app_conectar">Conectar</string>
+    <string name="app_inicioSesion">Iniciar sesión</string>
+    <string name="app_bienvenida">Bienvenido al banco</string>
+    <string name="app_bienvenidaBarra">Bienvenido/a,</string>
     <string name="app_cuentas">Cuentas</string>
     <string name="app_movimientos">Movimientos</string>
     <string name="app_transferencia">Transferencia</string>
     <string name="app_salir">Salir</string>
     <string name="app_configuracion">Configuración</string>
-    <string name="app_cambiarPass">Cambiar contraseña</string>
+    <string name="app_pass">Contraseña</string>
+    <string name="app_cambiarIdioma">Idioma cambiado</string>
 </resources>

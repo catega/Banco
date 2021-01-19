@@ -4,7 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,12 +18,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.banco.pojo.Cliente;
 
+import java.util.Locale;
+
 public class PrincipalActivity extends AppCompatActivity {
     Cliente c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(PrincipalActivity.this);
+        String nick = sp.getString("nick", "");
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbarPrincipal);
         setSupportActionBar(toolbar);
@@ -29,7 +38,10 @@ public class PrincipalActivity extends AppCompatActivity {
         c = (Cliente)getIntent().getSerializableExtra("cliente");
 
         TextView txtSubtitle = (TextView)findViewById(R.id.txtSubtitle);
-        txtSubtitle.setText("Bienvenido/a, " + c.getNombre() + " " + c.getApellidos());
+        if (nick.isEmpty())
+            txtSubtitle.setText(txtSubtitle.getText() + c.getNombre() + " " + c.getApellidos());
+        else
+            txtSubtitle.setText(txtSubtitle.getText() + nick);
     }
 
     @Override

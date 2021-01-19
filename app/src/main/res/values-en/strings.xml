@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Banco</string>
+    <string name="app_menu">Main menu</string>
+    <string name="app_conectar">Connect</string>
+    <string name="app_inicioSesion">Login</string>
+    <string name="app_bienvenida">Welcome to the bank</string>
+    <string name="app_bienvenidaBarra">Welcome,</string>
     <string name="app_cuentas">Accounts</string>
     <string name="app_movimientos">Movements</string>
     <string name="app_transferencia">Transference</string>
     <string name="app_salir">Exit</string>
     <string name="app_configuracion">Settings</string>
-    <string name="app_cambiarPass">Change password</string>
+    <string name="app_pass">Password</string>
+    <string name="app_cambiarIdioma">Languaje changed</string>
 </resources>

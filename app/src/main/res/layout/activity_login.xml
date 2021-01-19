@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Inicio de sesión"
+        android:text="@string/app_inicioSesion"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
