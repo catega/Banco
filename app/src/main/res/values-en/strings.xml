@@ -13,4 +13,6 @@
     <string name="app_configuracion">Settings</string>
     <string name="app_pass">Password</string>
     <string name="app_cambiarIdioma">Languaje changed</string>
+    <string name="app_datosBD">Data from Data Base</string>
+    <string name="app_datosSW">Data from Web Service</string>
 </resources>

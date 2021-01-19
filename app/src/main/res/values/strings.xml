@@ -12,4 +12,6 @@
     <string name="app_configuracion">Configuración</string>
     <string name="app_pass">Contraseña</string>
     <string name="app_cambiarIdioma">Idioma cambiado</string>
+    <string name="app_datosBD">Datos de la Base de Datos</string>
+    <string name="app_datosSW">Datos del Servicio Web</string>
 </resources>

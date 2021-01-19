@@ -39,9 +39,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
         TextView txtSubtitle = (TextView)findViewById(R.id.txtSubtitle);
         if (nick.isEmpty())
-            txtSubtitle.setText(txtSubtitle.getText() + c.getNombre() + " " + c.getApellidos());
+            txtSubtitle.setText(txtSubtitle.getText() + " " + c.getNombre() + " " + c.getApellidos());
         else
-            txtSubtitle.setText(txtSubtitle.getText() + nick);
+            txtSubtitle.setText(txtSubtitle.getText() + " " + nick);
     }
 
     @Override

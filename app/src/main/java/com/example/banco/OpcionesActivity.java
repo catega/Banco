@@ -62,6 +62,23 @@ public class OpcionesActivity extends PreferenceActivity {
                 }
             });
 
+            ListPreference datos = (ListPreference)findPreference("datos");
+            datos.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object obj) {
+                    switch (obj.toString()){
+                        case "BD":
+                            Toast.makeText(getActivity(), R.string.app_datosBD, Toast.LENGTH_LONG).show();
+                            break;
+                        case "SW":
+                            Toast.makeText(getActivity(), R.string.app_datosSW, Toast.LENGTH_LONG).show();
+                            break;
+                    }
+
+                    return false;
+                }
+            });
+
             /* Música
 
             MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.musica);
