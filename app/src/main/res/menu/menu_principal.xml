@@ -20,20 +20,26 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_cajeros"
         android:orderInCategory="4"
+        android:title="@string/app_cajeros"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="5"
         android:title="@string/app_configuracion"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_password"
-        android:orderInCategory="5"
+        android:orderInCategory="6"
         android:title="@string/app_pass"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_salir"
-        android:orderInCategory="6"
+        android:orderInCategory="7"
         android:title="@string/app_salir"
         app:showAsAction="never" />
 </menu>

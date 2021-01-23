@@ -2,6 +2,8 @@
     <string name="app_name">Banco</string>
     <string name="app_menu">Menú principal</string>
     <string name="app_conectar">Conectar</string>
+    <string name="app_cajeros">Cajeros</string>
+    <string name="app_modificarCajero">Modificar Cajero</string>
     <string name="app_inicioSesion">Iniciar sesión</string>
     <string name="app_bienvenida">Bienvenido al banco</string>
     <string name="app_bienvenidaBarra">Bienvenido/a,</string>
@@ -14,4 +16,8 @@
     <string name="app_cambiarIdioma">Idioma cambiado</string>
     <string name="app_datosBD">Datos de la Base de Datos</string>
     <string name="app_datosSW">Datos del Servicio Web</string>
+    <string name="app_direccion">Dirección</string>
+    <string name="app_longitud">Longitud</string>
+    <string name="app_latitud">Latitud</string>
+    <string name="app_zoom">Zoom</string>
 </resources>

@@ -64,6 +64,12 @@ public class PrincipalActivity extends AppCompatActivity {
             case R.id.action_transferencia:
                 intent.setClass(PrincipalActivity.this, TransferenciaActivity.class);
                 break;
+            case R.id.action_cajeros:
+                intent.setClass(PrincipalActivity.this, CajerosActivity.class);
+                startActivityForResult(intent, 0);
+                intent.putExtra("cliente", c);
+                startActivityForResult(intent, 0);
+                break;
             case R.id.action_password:
                 intent.setClass(PrincipalActivity.this, PasswordActivity.class);
                 break;
@@ -91,6 +97,9 @@ public class PrincipalActivity extends AppCompatActivity {
                 break;
             case "Password":
                 intent.setClass(PrincipalActivity.this, PasswordActivity.class);
+                break;
+            case "Cajeros":
+                intent.setClass(PrincipalActivity.this, CajerosActivity.class);
                 break;
         }
         intent.putExtra("cliente", c);
