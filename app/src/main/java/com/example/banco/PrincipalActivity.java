@@ -66,9 +66,8 @@ public class PrincipalActivity extends AppCompatActivity {
                 break;
             case R.id.action_cajeros:
                 intent.setClass(PrincipalActivity.this, CajerosActivity.class);
-                startActivityForResult(intent, 0);
                 intent.putExtra("cliente", c);
-                startActivityForResult(intent, 0);
+                startActivity(intent);
                 break;
             case R.id.action_password:
                 intent.setClass(PrincipalActivity.this, PasswordActivity.class);

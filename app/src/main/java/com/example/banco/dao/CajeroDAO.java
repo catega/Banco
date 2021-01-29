@@ -65,12 +65,31 @@ public class CajeroDAO {
         return c;
     }
 
-    /*public long add(ContentValues contentValues){
+    public long add(ContentValues reg){
+        if (db == null)
+            abrir();
+
+        return db.insert(C_TABLA, null, reg);
     }
-    public long update(ContentValues contentValues){
+
+    public long update(ContentValues reg){
+        long id = 0;
+
+        if (db == null)
+            abrir();
+
+        if (reg.containsKey(C_COLUMNA_ID)){
+            id = reg.getAsLong(C_COLUMNA_ID);
+            reg.remove(C_COLUMNA_ID);
+        }
+
+        return db.update(C_TABLA, reg, "_id=" + id, null);
     }
-    public void delete(long _id){
+
+    public long delete(long id){
+        if (db == null)
+            abrir();
+
+        return db.delete(C_TABLA, "_id=" + id, null);
     }
-    public Cursor getAll(){
-    }*/
 }
